@@ -16,7 +16,7 @@ Open http://localhost:8000. Any static HTTP server will work.
 
 - `index.html` — name, role and one floating white-and-black card linking to Work and Projects.
 - `projects/index.html` — standalone project collection, with one linked card per existing project preview.
-- `experience/index.html` — Work: expandable career history, delivery scope, credentials, education, recommendations and volunteering.
+- `experience/index.html` — Work: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
 - `projects/30-games/index.html` — 30 Games in 30 Days concept.
 - `projects/mobile-apps/index.html` — mobile application work.
 - `projects/short-film/index.html` — short film work.

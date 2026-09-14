@@ -239,19 +239,57 @@ nav{gap:12px;font-size:13px}
 .work-section .section-head{margin-bottom:24px}
 .work-section h3{font-size:21px;line-height:1.4;font-weight:500;letter-spacing:-.5px;margin:0 0 12px}
 .work-section p{margin:0 0 18px}
-.career-hint{margin-bottom:26px!important}
-.career-entry{padding:0}
-.career-entry summary{display:grid;grid-template-columns:150px minmax(0,1fr) 20px;gap:20px;align-items:start;padding:27px 0}
-.career-entry summary::-webkit-details-marker,.recommendation-details summary::-webkit-details-marker{display:none}
-.career-entry summary::after{line-height:1.2;text-align:right}
-.career-date{font:12px/1.6 var(--mono);color:var(--muted);padding-top:5px}
-.company-name{display:block;font-size:26px;line-height:1.2;letter-spacing:-.8px}
-.role-preview{display:block;font-size:14px;color:var(--muted);margin-top:9px;line-height:1.5}
-.current-label{display:inline-block;vertical-align:middle;font:10px/1.5 var(--mono);text-transform:uppercase;letter-spacing:.03em;color:var(--blue);border:1px solid #b7a297;padding:3px 7px;margin-left:10px}
-.career-body{padding:0 40px 30px 170px}
-.career-body p{padding-top:0;margin-bottom:18px!important;font-size:16px}
-.career-body .role-context{font-size:14px;color:var(--muted)}
-.career-body .tags{margin-top:22px}
+.career-hint{margin-bottom:30px!important}
+.chapter+.chapter{margin-top:52px}
+.chapter-head{display:flex;align-items:baseline;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.chapter-index{font:11px/1 var(--mono);letter-spacing:.14em;color:var(--accent)}
+.chapter-head h3{font-size:20px;font-weight:700;letter-spacing:-.03em;margin:0}
+.chapter-years{margin-left:auto;font:11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.jobs{display:flex;flex-direction:column;gap:14px}
+.job{background:#fff;border:0;border-radius:18px;padding:0;overflow:hidden;box-shadow:0 1px 2px rgba(33,33,33,.05),0 8px 16px -10px rgba(33,33,33,.18);transition:box-shadow .25s ease,transform .25s ease}
+.job[open]{box-shadow:0 1px 2px rgba(33,33,33,.06),0 14px 28px -14px rgba(33,33,33,.3)}
+.job--current{background:var(--ink);color:#fff}
+.job-summary{display:grid;grid-template-columns:210px minmax(0,1fr) 40px;gap:0 30px;align-items:start;padding:clamp(22px,2.6vw,30px);list-style:none;cursor:default}
+details.job>.job-summary{cursor:pointer}
+.job-summary::-webkit-details-marker,.job-summary::marker{display:none;content:""}
+.job-summary::after,details.job[open]>.job-summary::after{content:none}
+.job-aside{display:flex;flex-direction:column;gap:9px;padding-top:5px}
+.job-dates,.job-place{font:11px/1.55 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.job-dates{color:var(--ink)}
+.job--current .job-dates{color:#fff}
+.job--current .job-place,.job--current .job-role{color:#a7a7a4}
+.job-company{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-size:clamp(24px,2.6vw,32px);font-weight:700;line-height:1.1;letter-spacing:-.035em}
+.job-now{font:10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:100px;padding:6px 9px}
+.job-role{display:block;margin-top:9px;font-size:15px;line-height:1.5;color:var(--muted)}
+.job-domains{display:flex;flex-wrap:wrap;align-items:center;gap:7px 0;margin-top:18px;font:11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.job-domains span:not(:last-child)::after{content:"|";margin:0 10px;color:var(--line)}
+.job--current .job-domains{color:#a7a7a4}
+.job--current .job-domains span:not(:last-child)::after{color:#55565a}
+.job-toggle{justify-self:end;width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;font-size:19px;line-height:1;color:var(--accent);transition:transform .25s ease,background .2s,border-color .2s}
+.job--current .job-toggle{border-color:#44454a}
+details.job[open] .job-toggle{transform:rotate(45deg)}
+.job-body{display:grid;grid-template-columns:210px minmax(0,1fr);gap:0 30px;padding:0 clamp(22px,2.6vw,30px) clamp(24px,2.8vw,32px)}
+.job-block{grid-column:2;padding-top:22px;border-top:1px solid var(--line)}
+.job--current .job-block{border-color:#3a3b3f}
+.job-block h4{margin:0 0 12px;font:11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.job-block p{margin:0 0 12px;max-width:640px}
+.job-block p:last-child{margin-bottom:0}
+.job--current .job-block .small{color:#a7a7a4}
+.job .role-history{margin:0}
+.job .role-history li::before{top:7px}
+.job--current .role-history{border-color:#44454a}
+@media(hover:hover){details.job:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(33,33,33,.06),0 16px 30px -14px rgba(33,33,33,.3)}
+details.job:hover .job-toggle{background:var(--accent);border-color:var(--accent);color:#fff}
+}
+@media(max-width:860px){.job-summary{grid-template-columns:minmax(0,1fr) 36px;gap:0 16px}
+.job-aside{grid-column:1;grid-row:1;padding-top:0;margin-bottom:16px;gap:6px}
+.job-main{grid-column:1;grid-row:2}
+.job-toggle{grid-column:2;grid-row:1;width:32px;height:32px;font-size:17px}
+.job-body{grid-template-columns:minmax(0,1fr)}
+.job-block{grid-column:1}
+.chapter+.chapter{margin-top:38px}
+}
+.recommendation-details summary::-webkit-details-marker{display:none}
 .role-history{list-style:none;padding:0 0 0 20px;margin:24px 0;border-left:1px solid #b9b9b2}
 .role-history li{position:relative;padding-bottom:24px}
 .role-history li:last-child{padding-bottom:0}
@@ -274,7 +312,7 @@ nav{gap:12px;font-size:13px}
 .recommendation figcaption strong{font-weight:600}
 .recommendation figcaption span{color:var(--muted);font-size:12px;margin-top:4px}
 .recommendation-details{margin-bottom:25px}
-@media(max-width:1100px){.work-layout{grid-template-columns:175px minmax(0,1fr);gap:30px}.career-entry summary{grid-template-columns:125px minmax(0,1fr) 18px;gap:15px}.career-body{padding-left:140px}.company-name{font-size:23px}}
+@media(max-width:1100px){.work-layout{grid-template-columns:175px minmax(0,1fr);gap:30px}}
 @media(max-width:850px){.work-layout{grid-template-columns:1fr;gap:35px}.work-sidebar nav{position:static;flex-direction:row;flex-wrap:wrap;gap:8px 22px}.work-section .section-head h2{font-size:clamp(28px,5vw,40px)}}
 @media(max-width:600px){
 .work-hero h1{font-size:clamp(40px,9.5vw,56px)}
@@ -285,12 +323,7 @@ nav{gap:12px;font-size:13px}
 .work-stats>div+div{padding-left:14px;padding-right:8px}
 .work-stats strong{font-size:34px;letter-spacing:-2px}
 .work-stats span{font-size:11px;line-height:1.5}
-.career-entry summary{grid-template-columns:minmax(0,1fr) 20px;gap:8px 16px;padding:23px 0}
-.career-date{grid-column:1;grid-row:1;padding:0}
-.career-heading{grid-column:1;grid-row:2}
-.career-entry summary::after{grid-column:2;grid-row:1/3;align-self:center}
-.career-body{padding:0 0 26px}
-.company-name{font-size:24px}
+.job-company{font-size:24px}
 .practice-grid{grid-template-columns:1fr;gap:15px}
 .education-rows>div{grid-template-columns:1fr;gap:6px}
 .work-section{padding-bottom:38px}
