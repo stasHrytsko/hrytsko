@@ -1,6 +1,6 @@
 # HRYTSKO
 
-Text-only personal website for Stas Hrytsko, a programme and delivery leader based in Valencia. A short introduction leads to two destinations: Work and Projects.
+Personal website for Stas Hrytsko, a programme and delivery leader based in Valencia. A short introduction leads to two destinations: Work and Projects.
 
 ## Run locally
 
@@ -64,3 +64,7 @@ SAFe is shown with its August 2024 expiry. Recommendations are clearly attribute
 Expand companies with native HTML details controls (keyboard and screen reader accessible, no JavaScript required).
 
 Project cards retain their existing Concept preview status until actual project titles, stages and releases are confirmed. The collection is ready for both ongoing and finished projects; no releases or progress have been invented.
+
+## Work review — September 2026
+
+The Work page now leads with a concrete delivery focus, two evidence-backed experience highlights and a manager recommendation. Earlier procurement roles remain available in a collapsed chapter. Scope is labelled explicitly: approximately 150 programme contributors and a team of one Program Manager plus four Project Managers. The ambiguous 8-to-50 account-growth claim is omitted pending confirmation of the unit, period and attribution. Detailed outcome case studies still need supporting results; highlights do not claim specific launches are completed. CV download and new contact actions are deliberately deferred by the owner. The approved new portrait still needs transfer into the repository after an interrupted image upload; the existing decorative placeholder remains until that asset is available.
