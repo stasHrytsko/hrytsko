@@ -102,7 +102,7 @@ function gamePage(game, next) {
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header>
-<div class="wrap nav"><a class="wordmark" href="../../../" aria-label="Stas Hrytsko home">hrytsko<span>.</span></a>
+<div class="wrap nav"><a class="wordmark" href="../../../" aria-label="Stas Hrytsko home">Hrytsko<span>.</span></a>
 <nav aria-label="Main navigation"><a href="../../../experience/">Career</a><a href="../../" class="active" aria-current="location">Projects</a></nav>
 </div>
 </header>
