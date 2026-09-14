@@ -219,3 +219,82 @@ nav{gap:12px;font-size:13px}
 
 }
 
+
+/* Work: career overview and progressively disclosed roles. */
+.work-hero .period{color:var(--accent)}
+.work-hero .work-title{font-size:22px;font-weight:600;letter-spacing:-.5px;margin:32px 0 12px}
+.work-hero .lede{font-size:20px;max-width:810px;margin-top:0}
+.work-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:64px}
+.work-stats>div{padding:28px 28px 30px 0}
+.work-stats>div+div{border-left:1px solid var(--line);padding-left:32px}
+.work-stats strong{display:block;font-size:54px;font-weight:500;line-height:1.2;letter-spacing:-3px;margin-bottom:12px}
+.work-stats span{display:block;color:var(--muted);font-size:14px;max-width:240px}
+.work-layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:64px}
+.work-sidebar nav{position:sticky;top:125px;display:flex;flex-direction:column;gap:4px;align-items:flex-start;font:12px/1.5 monospace}
+.work-sidebar nav a{padding:10px 0;color:var(--muted)}
+.work-sidebar nav a:hover{color:var(--blue)}
+.work-content{min-width:0}
+.work-section{padding:0 0 62px;scroll-margin-top:115px}
+.work-section+.work-section{border-top:1px solid var(--line);padding-top:46px}
+.work-section .section-head{margin-bottom:24px}
+.work-section h3{font-size:21px;line-height:1.4;font-weight:500;letter-spacing:-.5px;margin:0 0 12px}
+.work-section p{margin:0 0 18px}
+.career-hint{margin-bottom:26px!important}
+.career-entry{padding:0}
+.career-entry summary{display:grid;grid-template-columns:150px minmax(0,1fr) 20px;gap:20px;align-items:start;padding:27px 0}
+.career-entry summary::-webkit-details-marker,.recommendation-details summary::-webkit-details-marker{display:none}
+.career-entry summary::after{line-height:1.2;text-align:right}
+.career-date{font:12px/1.6 monospace;color:var(--muted);padding-top:5px}
+.company-name{display:block;font-size:26px;line-height:1.2;letter-spacing:-.8px}
+.role-preview{display:block;font-size:14px;color:var(--muted);margin-top:9px;line-height:1.5}
+.current-label{display:inline-block;vertical-align:middle;font:10px/1.5 monospace;text-transform:uppercase;letter-spacing:.03em;color:var(--blue);border:1px solid #b7a297;padding:3px 7px;margin-left:10px}
+.career-body{padding:0 40px 30px 170px}
+.career-body p{padding-top:0;margin-bottom:18px!important;font-size:16px}
+.career-body .role-context{font-size:14px;color:var(--muted)}
+.career-body .tags{margin-top:22px}
+.role-history{list-style:none;padding:0 0 0 20px;margin:24px 0;border-left:1px solid #b9b9b2}
+.role-history li{position:relative;padding-bottom:24px}
+.role-history li:last-child{padding-bottom:0}
+.role-history li::before{content:"";position:absolute;left:-25px;top:8px;width:9px;height:9px;background:var(--accent);border-radius:50%}
+.role-history h3{font-size:18px;letter-spacing:-.3px;margin-bottom:4px}
+.role-history p{margin-top:10px}
+.practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px 36px}
+.practice-grid p{font-size:16px;color:var(--muted)}
+.credential{padding:24px 0;border-top:1px solid var(--line)}
+.credential h3{margin-top:10px}
+.credential p{margin-bottom:0}
+.education-rows{margin-top:25px}
+.education-rows>div{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:18px 0;border-top:1px solid var(--line)}
+.education-rows p{margin:0;font-size:16px}
+.recommendation{margin:24px 0 32px}
+.recommendation blockquote{margin:0 0 22px;font-size:19px;line-height:1.6;max-width:720px}
+.lead-quote{padding-left:25px;border-left:3px solid var(--accent)}
+.lead-quote blockquote{font-size:25px;line-height:1.5;letter-spacing:-.4px}
+.recommendation figcaption{display:flex;flex-direction:column;font-size:14px}
+.recommendation figcaption strong{font-weight:600}
+.recommendation figcaption span{color:var(--muted);font-size:12px;margin-top:4px}
+.recommendation-details{margin-bottom:25px}
+@media(max-width:1100px){.work-layout{grid-template-columns:175px minmax(0,1fr);gap:30px}.career-entry summary{grid-template-columns:125px minmax(0,1fr) 18px;gap:15px}.career-body{padding-left:140px}.company-name{font-size:23px}}
+@media(max-width:850px){.work-layout{grid-template-columns:1fr;gap:35px}.work-sidebar nav{position:static;flex-direction:row;flex-wrap:wrap;gap:8px 22px}.work-section .section-head h2{font-size:clamp(28px,5vw,40px)}}
+@media(max-width:600px){
+.work-hero h1{font-size:clamp(40px,9.5vw,56px)}
+.work-hero .work-title{font-size:19px}
+.work-hero .lede{font-size:17px}
+.work-stats{margin-bottom:28px}
+.work-stats>div{padding:18px 10px 20px 0}
+.work-stats>div+div{padding-left:14px;padding-right:8px}
+.work-stats strong{font-size:34px;letter-spacing:-2px}
+.work-stats span{font-size:11px;line-height:1.5}
+.career-entry summary{grid-template-columns:minmax(0,1fr) 20px;gap:8px 16px;padding:23px 0}
+.career-date{grid-column:1;grid-row:1;padding:0}
+.career-heading{grid-column:1;grid-row:2}
+.career-entry summary::after{grid-column:2;grid-row:1/3;align-self:center}
+.career-body{padding:0 0 26px}
+.company-name{font-size:24px}
+.practice-grid{grid-template-columns:1fr;gap:15px}
+.education-rows>div{grid-template-columns:1fr;gap:6px}
+.work-section{padding-bottom:38px}
+.work-section+.work-section{padding-top:34px}
+.lead-quote{padding-left:18px}
+.lead-quote blockquote{font-size:21px}
+}

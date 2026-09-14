@@ -14,8 +14,8 @@ Open http://localhost:8000. Any static HTTP server will work.
 
 ## Structure
 
-- `index.html` — introduction, experience, projects, approach, and contact.
-- `experience/index.html` — professional background and expandable delivery principles.
+- `index.html` — introduction, work overview, projects, approach, and contact.
+- `experience/index.html` — Work: expandable career history, delivery scope, credentials, education, recommendations and volunteering.
 - `projects/30-games/index.html` — 30 Games in 30 Days concept.
 - `projects/mobile-apps/index.html` — mobile application work.
 - `projects/short-film/index.html` — short film work.
@@ -28,7 +28,7 @@ Open http://localhost:8000. Any static HTTP server will work.
 
 Large graphite typography, a light gray background, and orange accents. No portrait photos, generated illustrations, raster image assets, external fonts, JavaScript dependencies, or remote services.
 
-All site copy is English. Project pages are marked as concept previews. Actual project stages, career cases, and contact links still need to be supplied; this prototype does not claim completed releases. Products is intentionally absent until there are released works.
+All site copy is English. Project pages are marked as concept previews. Work content is based on supplied LinkedIn screenshots, with a verified profile URL. Detailed career cases, project stages, direct credential URLs and the Bayer recommendation document still need to be supplied; this prototype does not claim completed releases. Products is intentionally absent until there are released works.
 
 Edit the HTML files directly and adjust the shared stylesheet. Links and assets are relative so the site works at a domain root or a subdirectory.
 
@@ -37,3 +37,11 @@ Edit the HTML files directly and adjust the shared stylesheet. Links and assets 
 Plain HTML and CSS; deploy directly on Vercel or another static host. Serve the repository root with no build command. No hosting credentials, deployment workflows, or provider-specific project identities are included.
 
 `noindex,nofollow` is retained while the content is a prototype. Remove it from all HTML pages when publishing the finished content. Domain and production hosting configuration remain separate steps.
+
+## Work content notes
+
+Career titles and dates follow the supplied LinkedIn screenshots, including overlapping Buyer / Senior Buyer dates at Bayer. The current employer remains NDA. Career-wide claims, including delivery account growth from 8 to 50, are not attributed to a specific employer without supporting detail.
+
+SAFe is shown with its August 2024 expiry. Recommendations are clearly attributed excerpts of visible text; truncated portions have not been reconstructed. Certificate and project document URLs are not invented. The existing /experience/ URL remains the Work page, and the old homepage #experience anchor is retained.
+
+Expand companies with native HTML details controls (keyboard and screen reader accessible, no JavaScript required).
