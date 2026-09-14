@@ -21,18 +21,20 @@ const longDate = (iso) => {
   const [year, month, day] = iso.split('-').map(Number);
   return `${day} ${MONTHS[month - 1]} ${year}`;
 };
+// Cards are narrow, so they carry an abbreviated month.
+const shortDate = (iso) => {
+  const [, month, day] = iso.split('-').map(Number);
+  return `${day} ${MONTHS[month - 1].slice(0, 3)}`;
+};
 
+// Planned days render as light empty slots so a filled day stands out against them.
 function logCard(game) {
-  const cover = '<div class="log-cover geo-cover" aria-hidden="true"></div>';
   if (game.status !== 'published') {
-    return `<article class="log-card">
-${cover}
-<div class="log-info"><span class="log-date">${esc(dayLabel(game.day))}</span><h3>Coming soon</h3></div>
-</article>`;
+    return `<article class="log-card log-card--planned"><span class="log-date">${esc(dayLabel(game.day))}</span></article>`;
   }
   return `<a class="log-card" href="./${esc(game.slug)}/">
-${cover}
-<div class="log-info"><span class="log-date">${esc(dayLabel(game.day))} · ${esc(longDate(game.date))}</span><h3>${esc(game.title)}</h3></div>
+<div class="log-cover geo-cover" aria-hidden="true"></div>
+<div class="log-info"><span class="log-date">${esc(dayLabel(game.day))} · ${esc(shortDate(game.date))}</span><h3>${esc(game.title)}</h3></div>
 </a>`;
 }
 
