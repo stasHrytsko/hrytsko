@@ -56,17 +56,17 @@ function statCards(metrics, updated) {
 </section>`;
 }
 
-function quotes(list) {
-  if (!list.length) return '';
-  const cards = list.map((quote) => {
-    const source = quote.url
-      ? `<a href="${esc(quote.url)}" target="_blank" rel="noopener noreferrer">${esc(quote.source)} ↗</a>`
-      : esc(quote.source);
-    return `<figure class="quote-card reveal"><blockquote>“${esc(quote.text)}”</blockquote><figcaption><strong>${esc(quote.author)}</strong><span>${source}</span></figcaption></figure>`;
-  });
+// Feedback is a hand-written summary of reactions gathered across platforms, not quoted comments.
+function feedback(summary = {}) {
+  const liked = summary.liked || [];
+  const didntWork = summary.didntWork || [];
+  if (!liked.length && !didntWork.length) return '';
+  const card = (label, items, variant) => items.length
+    ? `<article class="flat-card reveal"><span class="card-label">${label}</span><ul class="feedback-list feedback-list--${variant}">${items.map((item) => `<li>${esc(item)}</li>`).join('')}</ul></article>`
+    : '';
   return `\n<section class="detail-block">
-<h2>What people said</h2>
-<div class="card-grid card-grid--three">${cards.join('')}</div>
+<h2>What players said</h2>
+<div class="card-grid">${card('Liked', liked, 'liked')}${card('Didn’t work', didntWork, 'flat')}</div>
 </section>`;
 }
 
@@ -111,7 +111,7 @@ function gamePage(game, next) {
 ${game.pitch ? `<p class="lede">${esc(game.pitch)}</p>` : ''}
 <div class="actions">${play}${platformLinks(game.links, play ? ['itch'] : [])}</div>
 </section>
-<article class="detail-body">${statCards(game.metrics, data.metricsUpdated)}${notes(game.notes)}${quotes(game.quotes)}
+<article class="detail-body">${statCards(game.metrics, data.metricsUpdated)}${notes(game.notes)}${feedback(game.feedback)}
 </article>
 ${nextLink}
 </main>

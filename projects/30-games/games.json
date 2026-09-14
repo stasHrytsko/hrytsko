@@ -11,7 +11,7 @@
       "links": {},
       "metrics": {},
       "notes": {},
-      "quotes": []
+      "feedback": { "liked": [], "didntWork": [] }
     }
   ]
 }

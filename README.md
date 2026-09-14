@@ -24,13 +24,15 @@ The script has no dependencies. It rewrites the card grid between the `log:start
 
 Metrics (plays, likes, comments) are recorded by hand and stamped with the `metricsUpdated` date. They are deliberately not fetched live: itch.io exposes no public play counts, and X and Threads need paid or per-account API access, so a live counter would break quietly and silently show zero.
 
+Player reactions live on the platforms where they were posted. Rather than embedding comments, each day carries a hand-written summary under `feedback`: `liked` and `didntWork`, each a short list. Both render as two cards; the `liked` list uses accent markers.
+
 ## Structure
 
 - `index.html` — name, role and one floating white-and-black card linking to Work and Projects.
 - `projects/index.html` — standalone project collection, with one linked card per existing project preview.
 - `experience/index.html` — Work: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
 - `projects/30-games/index.html` — 30 Games in 30 Days concept, with the generated daily log grid.
-- `projects/30-games/games.json` — source of truth for the log: days, links, hand-recorded metrics and selected comments.
+- `projects/30-games/games.json` — source of truth for the log: days, links, hand-recorded metrics and a hand-written feedback summary.
 - `scripts/build-games.mjs` — dependency-free generator for the log grid and per-game pages.
 - `projects/mobile-apps/index.html` — mobile application work.
 - `projects/short-film/index.html` — short film work.
