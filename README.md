@@ -4,7 +4,7 @@ Text-only personal website for Stas Hrytsko, a programme and delivery leader bas
 
 ## Run locally
 
-No installation or build step is required. From the repository root:
+The site itself needs no installation or build step. From the repository root:
 
 ```sh
 python3 -m http.server 8000
@@ -12,12 +12,26 @@ python3 -m http.server 8000
 
 Open http://localhost:8000. Any static HTTP server will work.
 
+## The 30 Games log
+
+`projects/30-games/games.json` is the single source of truth for the daily log. After editing it, regenerate the cards and per-game pages:
+
+```sh
+node scripts/build-games.mjs
+```
+
+The script has no dependencies. It rewrites the card grid between the `log:start` / `log:end` markers in `projects/30-games/index.html` and writes one static page per game with `"status": "published"`. Entries still marked `"planned"` render as a “Coming soon” card with no link and no page.
+
+Metrics (plays, likes, comments) are recorded by hand and stamped with the `metricsUpdated` date. They are deliberately not fetched live: itch.io exposes no public play counts, and X and Threads need paid or per-account API access, so a live counter would break quietly and silently show zero.
+
 ## Structure
 
 - `index.html` — name, role and one floating white-and-black card linking to Work and Projects.
 - `projects/index.html` — standalone project collection, with one linked card per existing project preview.
 - `experience/index.html` — Work: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
-- `projects/30-games/index.html` — 30 Games in 30 Days concept.
+- `projects/30-games/index.html` — 30 Games in 30 Days concept, with the generated daily log grid.
+- `projects/30-games/games.json` — source of truth for the log: days, links, hand-recorded metrics and selected comments.
+- `scripts/build-games.mjs` — dependency-free generator for the log grid and per-game pages.
 - `projects/mobile-apps/index.html` — mobile application work.
 - `projects/short-film/index.html` — short film work.
 - `projects/board-game/index.html` — tabletop game work.
