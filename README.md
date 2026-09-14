@@ -14,7 +14,7 @@ Open http://localhost:8000. Any static HTTP server will work.
 
 ## Structure
 
-- `index.html` — compact personal introduction, Work / Projects links and LinkedIn.
+- `index.html` — name, role and one floating white-and-black card linking to Work and Projects.
 - `projects/index.html` — standalone project collection, with one linked card per existing project preview.
 - `experience/index.html` — Work: expandable career history, delivery scope, credentials, education, recommendations and volunteering.
 - `projects/30-games/index.html` — 30 Games in 30 Days concept.
@@ -27,7 +27,7 @@ Open http://localhost:8000. Any static HTTP server will work.
 
 ## Content and design
 
-A quiet, compact homepage inspired by the clarity of Julie Zhuo’s personal introduction. Large graphite typography, a light gray background, and orange accents. No portrait photos, generated illustrations, raster image assets, external fonts, JavaScript dependencies, or remote services.
+A quiet, compact homepage inspired by the clarity of Julie Zhuo’s personal introduction. Palette: `#ededeb` background, `#212121` near-black, `#e8673d` accent. Typography uses a system grotesk stack (Inter first, then Helvetica Neue / Segoe UI / system UI) with a monospace stack for small labels, so nothing is downloaded. No portrait photos, generated illustrations, raster image assets, external fonts, JavaScript dependencies, or remote services.
 
 All site copy is English. Project pages are marked as concept previews. Work content is based on supplied LinkedIn screenshots, with a verified profile URL. Detailed career cases, project stages, direct credential URLs and the Bayer recommendation document still need to be supplied; this prototype does not claim completed releases. Products is intentionally absent until there are released works.
 
