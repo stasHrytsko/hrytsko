@@ -253,14 +253,19 @@ details.job[open]::details-content{block-size:auto;content-visibility:visible}
 
 /* Home: name on the background, one white-and-black card floating above it. */
 .home{background:var(--paper)}
+/* Static paper grain behind the homepage content only. */
+.home .stage{position:relative;isolation:isolate}
+.home .stage::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22180%22%20height%3D%22180%22%20viewBox%3D%220%200%20180%20180%22%3E%3Cfilter%20id%3D%22grain%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%22.85%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%2F%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url(%23grain)%22%2F%3E%3C%2Fsvg%3E");background-size:180px 180px}
+.masthead-bio{max-width:440px;margin:18px auto 0;font-size:clamp(14px,1.5vw,17px);line-height:1.6;color:var(--muted);text-wrap:balance;animation:rise .7s .13s cubic-bezier(.2,.7,.2,1) both}
 .stage{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;padding:clamp(28px,5vh,56px) clamp(18px,4vw,48px)}
 .composition{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;padding-bottom:clamp(28px,6vh,64px)}
 .masthead{position:static;background:none;border-bottom:0;text-align:center;max-width:600px}
 .masthead h1{font-size:clamp(42px,6.6vw,76px);font-weight:700;line-height:1;letter-spacing:-.055em;margin:0;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
 .masthead h1 span,.project-index-hero .period{color:var(--accent)}
 .masthead-role{margin:20px 0 0;font:12px/1 var(--mono);text-transform:uppercase;letter-spacing:.18em;color:var(--muted);animation:rise .7s .09s cubic-bezier(.2,.7,.2,1) both}
-.card{display:grid;gap:0;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto auto auto 1fr;width:min(880px,100%);min-height:clamp(300px,44vh,440px);margin-top:clamp(40px,6vh,68px);overflow:hidden;background:var(--ink);box-shadow:0 1px 2px rgba(33,33,33,.07),0 10px 18px -10px rgba(33,33,33,.22),0 28px 44px -26px rgba(33,33,33,.5);animation:rise .8s .18s cubic-bezier(.2,.7,.2,1) both;transition:grid-template-columns .45s cubic-bezier(.2,.7,.2,1)}
-.panel{display:grid;grid-row:1/-1;grid-template-rows:subgrid;justify-items:center;text-align:center;padding:clamp(28px,3.4vw,44px);transition:background .25s ease}
+.card{display:grid;gap:0;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:1fr auto auto auto 1fr;width:min(880px,100%);min-height:clamp(300px,44vh,440px);margin-top:clamp(40px,6vh,68px);overflow:hidden;background:var(--ink);box-shadow:0 1px 2px rgba(33,33,33,.07),0 10px 18px -10px rgba(33,33,33,.22),0 28px 44px -26px rgba(33,33,33,.5);animation:rise .8s .18s cubic-bezier(.2,.7,.2,1) both}
+.panel{min-width:0;display:grid;grid-row:1/-1;grid-template-rows:subgrid;justify-items:center;text-align:center;padding:clamp(28px,3.4vw,44px);transition:background .25s ease}
+.home .panel:focus-visible{outline-offset:-6px}
 .panel--light,.panel--light:hover{color:var(--ink)}
 .panel--dark,.panel--dark:hover{color:#fff}
 .panel--light{background:#fff}
@@ -269,10 +274,10 @@ details.job[open]::details-content{block-size:auto;content-visibility:visible}
 .panel-description{grid-row:3;margin-top:16px;font-size:15px;line-height:1.6;max-width:250px;color:var(--muted)}
 .panel--dark .panel-description{color:#a7a7a4}
 .panel-cta{grid-row:4;margin-top:30px;font-size:13px;letter-spacing:.01em;padding-bottom:5px;border-bottom:1px solid currentColor;transition:color .2s,border-color .2s}
-.card:has(.panel--light:focus-visible){grid-template-columns:1.09fr .91fr}
-.card:has(.panel--dark:focus-visible){grid-template-columns:.91fr 1.09fr}
-@media(hover:hover){.card:has(.panel--light:hover){grid-template-columns:1.09fr .91fr}
-.card:has(.panel--dark:hover){grid-template-columns:.91fr 1.09fr}
+
+
+@media(hover:hover){
+
 .panel--light:hover{background:#f6f6f4}
 .panel--dark:hover{background:#2e2e2e}
 .panel:hover .panel-cta{color:var(--accent);border-color:var(--accent)}
