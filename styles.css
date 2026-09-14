@@ -299,33 +299,33 @@ nav{gap:12px;font-size:13px}
 .lead-quote blockquote{font-size:21px}
 }
 
-/* A quiet introduction, split into Work and Projects. */
-.split-intro{min-height:100vh;min-height:100svh}
-.split-shell{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
-.split-header{text-align:center;padding:clamp(48px,9vh,96px) 24px 0}
-.split-header h1{font-size:clamp(38px,6vw,60px);line-height:1.1;font-weight:600;letter-spacing:-.055em;margin:0 0 20px}
-.split-header h1 span,.project-index-hero .period{color:var(--accent)}
-.split-header .intro-bio{font-size:19px;line-height:1.65;letter-spacing:-.3px;max-width:560px;margin:0 auto;color:var(--muted)}
-.split-panels{flex:1 1 auto;display:grid;grid-template-columns:1fr 1fr;min-height:340px;margin-top:clamp(32px,6vh,64px)}
-.split-panel{position:relative;display:flex;align-items:flex-end;padding:36px;transition:background .2s}
-.split-panel--light{background:var(--paper);color:var(--ink)}
-.split-panel--light:hover{background:var(--soft)}
-.split-panel--dark{background:var(--ink);color:var(--paper)}
-.split-panel--dark:hover{background:#323331}
-.split-panel-title{display:block;font-size:clamp(30px,4.6vw,52px);font-weight:600;letter-spacing:-.04em}
-.split-panel-description{display:block;font-size:15px;line-height:1.6;margin-top:10px;max-width:300px}
-.split-panel--light .split-panel-description{color:var(--muted)}
-.split-panel--dark .split-panel-description{color:#c5c5bf}
-.split-panel-arrow{position:absolute;top:28px;right:28px;font-size:26px;line-height:1;transition:transform .2s,color .2s}
-.split-panel--light .split-panel-arrow{color:var(--ink)}
-.split-panel--dark .split-panel-arrow{color:var(--paper)}
-.split-panel:hover .split-panel-arrow{transform:translate(3px,-3px);color:var(--accent)}
-.split-panel:hover .split-panel-title{text-decoration:underline;text-underline-offset:6px}
-.intro-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 28px;padding:18px 24px;font-size:13px;color:var(--muted)}
-.intro-footer a{text-decoration:underline;text-underline-offset:4px}
-.intro-footer a:hover{color:var(--blue)}
-@media(max-width:600px){.split-header{padding-top:40px}.split-header .intro-bio{font-size:17px}.split-panels{min-height:260px;margin-top:28px}.split-panel{padding:22px}.split-panel-description{font-size:14px;max-width:none}.split-panel-arrow{top:18px;right:18px;font-size:22px}}
-@media(max-width:365px){.split-panel{padding:16px}}
+/* Home: name on the background, one white-and-black card floating above it. */
+.home{background:radial-gradient(115% 80% at 50% 0%,#f2f2ef 0%,#e6e6e1 55%,#dcdcd6 100%);background-attachment:fixed}
+.stage{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(40px,8vh,88px) clamp(18px,4vw,48px)}
+.masthead{position:static;background:none;border-bottom:0;text-align:center;max-width:560px}
+.masthead h1{font-size:clamp(40px,6.4vw,72px);font-weight:700;line-height:1;letter-spacing:-.055em;margin:0}
+.masthead h1 span,.project-index-hero .period{color:var(--accent)}
+.masthead-role{margin:18px 0 0;font:12px/1 monospace;text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}
+.masthead-bio{margin:22px auto 0;max-width:480px;font-size:17px;line-height:1.65;color:#55565a}
+.card{display:grid;gap:0;grid-template-columns:1fr 1fr;grid-template-rows:1fr auto auto;width:min(880px,100%);margin-top:clamp(40px,7vh,72px);border-radius:22px;overflow:hidden;box-shadow:0 2px 5px rgba(30,31,33,.05),0 22px 44px -20px rgba(30,31,33,.25),0 60px 90px -55px rgba(30,31,33,.55)}
+.panel{display:grid;grid-row:1/-1;grid-template-rows:subgrid;min-height:clamp(220px,28vh,270px);padding:clamp(24px,3vw,36px);transition:background .25s ease}
+.panel--light,.panel--light:hover{color:var(--ink)}
+.panel--dark,.panel--dark:hover{color:#fff}
+.panel--light{background:#fff}
+.panel--light:hover{background:#f4f4f1}
+.panel--dark{background:#1c1d1f}
+.panel--dark:hover{background:#2a2b2e}
+.panel-title{grid-row:1;align-self:end;font-size:clamp(28px,3.7vw,46px);font-weight:600;line-height:1.02;letter-spacing:-.045em}
+.panel-description{grid-row:2;margin-top:12px;font-size:15px;line-height:1.6;max-width:280px;color:var(--muted)}
+.panel--dark .panel-description{color:#a9aaa7}
+.panel-cta{grid-row:3;display:inline-flex;align-items:center;gap:9px;justify-self:start;margin-top:24px;font-size:13px;letter-spacing:.01em;padding-bottom:5px;border-bottom:1px solid currentColor}
+.panel-arrow{font-size:13px;line-height:1;transition:transform .2s}
+.panel:hover .panel-arrow{transform:translate(2px,-2px)}
+.page-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 24px;margin-top:clamp(26px,4vh,38px);font:11px/1.6 monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.page-foot a{border-bottom:1px solid #b5b5ae;padding-bottom:2px}
+.page-foot a:hover{color:var(--ink);border-color:var(--ink)}
+@media(max-width:760px){.masthead-bio{font-size:15.5px;max-width:400px}.card{border-radius:18px;width:100%}.panel{min-height:210px}.panel-description{font-size:13.5px;max-width:none}.panel-cta{margin-top:18px;font-size:12px;gap:7px}}
+@media(max-width:430px){.stage{padding:32px 16px}.masthead-role{font-size:11px;letter-spacing:.14em}.masthead-bio{margin-top:16px}.panel{padding:20px 18px}.panel-title{font-size:26px}.panel-cta{font-size:11px}.page-foot{font-size:10px}}
 .project-index-hero{max-width:840px}
 .project-index-hero .lede{font-size:21px;max-width:680px}
 .project-collection{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;padding-bottom:72px}
