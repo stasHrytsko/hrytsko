@@ -311,15 +311,15 @@ nav{gap:12px;font-size:13px}
 .panel--light,.panel--light:hover{color:var(--ink)}
 .panel--dark,.panel--dark:hover{color:#fff}
 .panel--light{background:#fff}
-.panel--light:hover{background:#f6f6f4}
 .panel--dark{background:var(--ink)}
-.panel--dark:hover{background:#2e2e2e}
 .panel-title{grid-row:1;align-self:end;font-size:clamp(29px,3.8vw,48px);font-weight:700;line-height:1.02;letter-spacing:-.045em}
 .panel-description{grid-row:2;margin-top:14px;font-size:15px;line-height:1.6;max-width:280px;color:var(--muted)}
 .panel--dark .panel-description{color:#a7a7a4}
 .panel-cta{grid-row:3;justify-self:start;margin-top:26px;font-size:13px;letter-spacing:.01em;padding-bottom:5px;border-bottom:1px solid currentColor;transition:color .2s,border-color .2s}
-.panel--light:hover .panel-cta{color:var(--accent);border-color:var(--accent)}
-.panel--dark:hover .panel-cta{color:var(--accent);border-color:var(--accent)}
+@media(hover:hover){.panel--light:hover{background:#f6f6f4}
+.panel--dark:hover{background:#2e2e2e}
+.panel:hover .panel-cta{color:var(--accent);border-color:var(--accent)}
+}
 @media(max-width:760px){.card{border-radius:18px;width:100%}.panel{min-height:215px}.panel-description{font-size:13.5px;max-width:none}.panel-cta{margin-top:20px;font-size:12px}}
 @media(max-width:430px){.stage{padding:32px 16px}.masthead-role{font-size:11px;letter-spacing:.15em}.panel{padding:22px 18px}.panel-title{font-size:27px}.panel-cta{font-size:11px}}
 .project-index-hero{max-width:840px}
