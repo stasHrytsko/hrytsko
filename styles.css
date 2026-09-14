@@ -185,6 +185,11 @@ nav{gap:12px;font-size:13px}
 
 /* Work: career overview and progressively disclosed roles. */
 .work-hero .period{color:var(--accent)}
+.work-hero-grid{display:grid;grid-template-columns:minmax(0,270px) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:start}
+.work-portrait{position:relative;margin:0;aspect-ratio:9/16;overflow:hidden;background:var(--ink)}
+.work-portrait img{display:block;width:100%;height:100%;object-fit:cover}
+.work-portrait::after{content:"";position:absolute;left:0;bottom:0;width:22px;height:22px;background:var(--accent)}
+.work-hero-content{min-width:0}
 .work-hero .work-title{font-size:22px;font-weight:600;letter-spacing:-.5px;margin:32px 0 12px}
 .work-hero .lede{font-size:20px;max-width:810px;margin-top:0}
 .stat-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:70px}
@@ -284,6 +289,9 @@ details.job:hover .job-toggle{background:var(--accent);border-color:var(--accent
 .education-rows>div{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--line)}
 .education-rows p{margin:0;font-size:16px}
 @media(max-width:850px){.work-section .section-head h2{font-size:clamp(28px,5vw,40px)}.card-grid,.card-grid--three{grid-template-columns:1fr}}
+@media(max-width:760px){.work-hero-grid{grid-template-columns:1fr;gap:24px}
+.work-portrait{width:150px;aspect-ratio:9/16}
+}
 @media(max-width:600px){
 .work-hero h1{font-size:clamp(40px,9.5vw,56px)}
 .work-hero .work-title{font-size:19px}
@@ -298,6 +306,7 @@ details.job:hover .job-toggle{background:var(--accent);border-color:var(--accent
 }
 
 /* Motion: entrance on load, reveal on scroll, smooth disclosure. */
+.work-portrait{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
 .work-hero h1{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
 .work-hero .work-title{animation:rise .7s .07s cubic-bezier(.2,.7,.2,1) both}
 .work-hero .lede{animation:rise .7s .13s cubic-bezier(.2,.7,.2,1) both}
