@@ -1,6 +1,6 @@
 # HRYTSKO
 
-Personal website for Stas Hrytsko, a programme and delivery leader based in Valencia. A short introduction leads to two destinations: Work and Projects.
+Personal website for Stas Hrytsko, a programme and delivery leader based in Valencia. A short introduction leads to two destinations: Career and Projects.
 
 ## Run locally
 
@@ -28,9 +28,9 @@ Player reactions live on the platforms where they were posted. Rather than embed
 
 ## Structure
 
-- `index.html` — name, role and one floating white-and-black card linking to Work and Projects.
+- `index.html` — name, role and one floating white-and-black card linking to Career and Projects.
 - `projects/index.html` — standalone project collection, with one linked card per existing project preview.
-- `experience/index.html` — Work: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
+- `experience/index.html` — Career: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
 - `projects/30-games/index.html` — 30 Games in 30 Days concept, with the generated daily log grid.
 - `projects/30-games/games.json` — source of truth for the log: days, links, hand-recorded metrics and a hand-written feedback summary.
 - `scripts/build-games.mjs` — dependency-free generator for the log grid and per-game pages.
@@ -43,9 +43,9 @@ Player reactions live on the platforms where they were posted. Rather than embed
 
 ## Content and design
 
-A quiet, compact homepage inspired by the clarity of Julie Zhuo’s personal introduction. Palette: `#ededeb` background, `#212121` near-black, `#e8673d` accent. Typography uses a system grotesk stack (Inter first, then Helvetica Neue / Segoe UI / system UI) with a monospace stack for small labels, so nothing is downloaded. The Work page carries a black-and-white portrait; no other generated illustrations, raster image assets, external fonts, JavaScript dependencies, or remote services.
+A quiet, compact homepage inspired by the clarity of Julie Zhuo’s personal introduction. Palette: `#ededeb` background, `#212121` near-black, `#e8673d` accent. Typography uses a system grotesk stack (Inter first, then Helvetica Neue / Segoe UI / system UI) with a monospace stack for small labels, so nothing is downloaded. The Career page carries a black-and-white portrait; no external fonts or remote services. The project category filter uses a small local script; with JavaScript unavailable, all projects stay visible.
 
-All site copy is English. Project pages are marked as concept previews. Work content is based on supplied LinkedIn screenshots, with a verified profile URL. Detailed career cases, project stages, direct credential URLs and the Bayer recommendation document still need to be supplied; this prototype does not claim completed releases. Products is intentionally absent until there are released works.
+All site copy is English. Project cards and pages show categories and stages. Career content is based on supplied LinkedIn screenshots, with a verified profile URL. Detailed career cases, project stages, direct credential URLs and the Bayer recommendation document still need to be supplied; this prototype does not claim completed releases. Products is intentionally absent until there are released works.
 
 Edit the HTML files directly and adjust the shared stylesheet. Links and assets are relative so the site works at a domain root or a subdirectory.
 
@@ -55,16 +55,23 @@ Plain HTML and CSS; deploy directly on Vercel or another static host. Serve the 
 
 `noindex,nofollow` is retained while the content is a prototype. Remove it from all HTML pages when publishing the finished content. Domain and production hosting configuration remain separate steps.
 
-## Work content notes
+## Career content notes
 
 Career titles and dates follow the supplied LinkedIn screenshots, including overlapping Buyer / Senior Buyer dates at Bayer. The current employer remains NDA. Career-wide claims, including delivery account growth from 8 to 50, are not attributed to a specific employer without supporting detail.
 
-SAFe is shown with its August 2024 expiry. Recommendations are clearly attributed excerpts of visible text; truncated portions have not been reconstructed. Certificate and project document URLs are not invented. The existing /experience/ URL remains the Work page. Projects now lives at /projects/. Navigation and project return links use that page; old homepage #work, #experience and #projects anchors still resolve to the introduction links.
+SAFe is shown with its August 2024 expiry. Recommendations are clearly attributed excerpts of visible text; truncated portions have not been reconstructed. Certificate and project document URLs are not invented. The existing /experience/ URL remains the Career page. Projects now lives at /projects/. Navigation and project return links use that page; old homepage #work, #experience and #projects anchors still resolve to the introduction links.
 
 Expand companies with native HTML details controls (keyboard and screen reader accessible, no JavaScript required).
 
-Project cards retain their existing Concept preview status until actual project titles, stages and releases are confirmed. The collection is ready for both ongoing and finished projects; no releases or progress have been invented.
+The 30/30 project is the focus for September 2026. Its stage is Planning until the first game is published; other projects remain Concept until their stages are confirmed.
 
-## Work review — September 2026
+## Career review — September 2026
 
-The Work page now leads with a concrete delivery focus, two evidence-backed experience highlights and a manager recommendation. Earlier procurement roles remain available in a collapsed chapter. Scope is labelled explicitly: approximately 150 programme contributors and a team of one Program Manager plus four Project Managers. The ambiguous 8-to-50 account-growth claim is omitted pending confirmation of the unit, period and attribution. Detailed outcome case studies still need supporting results; highlights do not claim specific launches are completed. CV download and new contact actions are deliberately deferred by the owner. The approved black-and-white portrait with an orange band is now connected from `experience/file_00000000b10881f4941cb8662542f7a6.png`. The supplied image is used unchanged and displayed without cropping.
+The Career page now leads with a concrete delivery focus, two evidence-backed experience highlights and a manager recommendation. Earlier procurement roles remain available in a collapsed chapter. Scope is labelled explicitly: approximately 150 programme contributors and a team of one Program Manager plus four Project Managers. The ambiguous 8-to-50 account-growth claim is omitted pending confirmation of the unit, period and attribution. Detailed outcome case studies still need supporting results; highlights do not claim specific launches are completed. CV download and new contact actions are deliberately deferred by the owner. The approved black-and-white portrait with an orange band is now connected from `experience/file_00000000b10881f4941cb8662542f7a6.png`. The supplied image is used unchanged and displayed without cropping.
+
+
+## Project categories and 30/30 focus
+
+Navigation uses Career / Projects; the existing `/experience/` URL and homepage anchors are preserved. The Projects page has All, Games, Apps, Films and Tabletop filters. Tabletop belongs to Games as well as Tabletop. All cards remain available when JavaScript is disabled.
+
+30 Games in 30 Days is featured for September 2026. The 30-day clock starts with the first game. The generator updates stage, published count and ready summary in both the collection and project page from `games.json`: zero releases = Planning, 1–29 = In progress, 30 = Completed. Run `node scripts/build-games.mjs` after updating the log. Other project pages now use What I’m making / The goal / What’s ready / What’s next.

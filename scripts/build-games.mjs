@@ -103,7 +103,7 @@ function gamePage(game, next) {
 <a class="skip" href="#main">Skip to content</a>
 <header>
 <div class="wrap nav"><a class="wordmark" href="../../../" aria-label="Stas Hrytsko home">hrytsko<span>.</span></a>
-<nav aria-label="Main navigation"><a href="../../../experience/">Work</a><a href="../../" class="active" aria-current="location">Projects</a></nav>
+<nav aria-label="Main navigation"><a href="../../../experience/">Career</a><a href="../../" class="active" aria-current="location">Projects</a></nav>
 </div>
 </header>
 <main class="wrap" id="main">
@@ -125,12 +125,29 @@ ${nextLink}
 
 const games = [...data.games].sort((a, b) => a.day - b.day);
 
+// Keep the overview and project page in sync with actual published games.
+const publishedCount = games.filter((game) => game.status === 'published').length;
+const stage = publishedCount >= 30 ? 'Completed' : publishedCount > 0 ? 'In progress' : 'Planning';
+const readyText = publishedCount === 0
+  ? 'The 30-day log is set up. No games have been published here yet; the first playable game is the next milestone.'
+  : `${publishedCount} of 30 games published. Open the completed entries in the daily log to explore the games and development notes.`;
+
+function updateSummary(html) {
+  return html
+    .replace(/<!-- stage:30-games:start -->[\s\S]*?<!-- stage:30-games:end -->/g, `<!-- stage:30-games:start -->${stage}<!-- stage:30-games:end -->`)
+    .replace(/<!-- count:30-games:start -->[\s\S]*?<!-- count:30-games:end -->/g, `<!-- count:30-games:start -->${publishedCount}<!-- count:30-games:end -->`)
+    .replace(/<!-- ready:30-games:start -->[\s\S]*?<!-- ready:30-games:end -->/g, `<!-- ready:30-games:start -->\n<p>${esc(readyText)}</p>\n<!-- ready:30-games:end -->`);
+}
+
+
 const grid = `<div class="log-grid">\n${games.map(logCard).join('\n')}\n</div>`;
 const indexPath = join(projectDir, 'index.html');
 const index = readFileSync(indexPath, 'utf8');
 const markers = /<!-- log:start -->[\s\S]*?<!-- log:end -->/;
 if (!markers.test(index)) throw new Error('log:start / log:end markers missing in projects/30-games/index.html');
-writeFileSync(indexPath, index.replace(markers, `<!-- log:start -->\n${grid}\n<!-- log:end -->`));
+writeFileSync(indexPath, updateSummary(index.replace(markers, `<!-- log:start -->\n${grid}\n<!-- log:end -->`)));
+const overviewPath = join(root, 'projects', 'index.html');
+writeFileSync(overviewPath, updateSummary(readFileSync(overviewPath, 'utf8')));
 
 let pages = 0;
 games.forEach((game, i) => {
