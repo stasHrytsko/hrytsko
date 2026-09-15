@@ -12,7 +12,7 @@ header{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1p
 .nav{min-height:90px;display:flex;align-items:center;justify-content:space-between;gap:25px}
 .wordmark{--wordmark-size:30px;display:inline-block;font-size:0!important;font-weight:800;letter-spacing:-1.8px}
 .wordmark span{display:none}
-.wordmark::before{content:"H";font-size:var(--wordmark-size);color:var(--ink)}
+.wordmark::before{content:"SH";font-size:var(--wordmark-size);color:var(--ink)}
 .wordmark::after{content:".";font-size:var(--wordmark-size);color:var(--accent)}
 nav{display:flex;gap:36px;font-size:14px}
 nav a{padding:12px 0}
