@@ -10,7 +10,7 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .preview span{color:var(--ink)}
 header{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
 .nav{min-height:90px;display:flex;align-items:center;justify-content:space-between;gap:25px}
-.wordmark{--wordmark-size:30px;display:inline-block;font-size:0!important;font-weight:800;letter-spacing:-1.8px}
+.wordmark{--wordmark-size:30px;display:inline-block;font-size:0!important;font-weight:700;letter-spacing:-1px}
 .wordmark span{display:none}
 .wordmark::before{content:"SH";font-size:var(--wordmark-size);color:var(--ink)}
 .wordmark::after{content:".";font-size:var(--wordmark-size);color:var(--accent)}
