@@ -20,7 +20,13 @@ Open http://localhost:8000. Any static HTTP server will work.
 node scripts/build-games.mjs
 ```
 
-The script has no dependencies. It rewrites the card grid between the `log:start` / `log:end` markers in `projects/30-games/index.html` and writes one static page per prototype with `"status": "published"`. Entries still marked `"planned"` render as an empty planned slot with no link and no page.
+The script has no dependencies. It rewrites the upcoming card and prototype grid in `projects/30-games/index.html`, then writes one static page per prototype with `"status": "published"`. A `"scheduled"` entry powers the hidden upcoming card; `"planned"` entries remain empty slots. The launch schedule begins on 1 October 2026 and runs for 30 consecutive days.
+
+`projects/30-games/hub.js` shuffles the prototype cards on each visit, labels a release as “Tomorrow” when appropriate, persists first/latest UTM attribution in local storage and attaches that attribution to every custom event. Attribution remains granular; it is not reduced to warm/cold segments.
+
+PostHog is intentionally inactive until `projectToken` and `apiHost` are filled in `projects/30-games/analytics-config.js`. Use the Project API token from PostHog project settings, never a personal API key. Autocapture and session recording are disabled; the hub emits explicit project events only.
+
+To release a prototype, add its playable URL under `links.play`, change its status from `scheduled` to `published`, mark the next concept as `scheduled`, and run the generator. Scheduled titles and mechanics remain hidden on the public hub until that status change.
 
 The experiment metrics are qualified players, clarity rate, retry rate, desire for more content, return rate and player votes. They are stored per prototype and stamped with the `metricsUpdated` date. The public pages only render metrics that have a numeric value.
 
@@ -32,7 +38,9 @@ Player reactions live on the platforms where they were posted. Rather than embed
 - `projects/index.html` — standalone project collection, with one linked card per existing project preview.
 - `experience/index.html` — Career: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
 - `projects/30-games/index.html` — Prototype Validation Project overview, with the generated prototype log grid.
-- `projects/30-games/games.json` — source of truth for the log: days, links, hand-recorded metrics and a hand-written feedback summary.
+- `projects/30-games/games.json` — source of truth for the launch schedule, concepts, links, metrics and feedback summaries.
+- `projects/30-games/analytics-config.js` — launch date, timezone and PostHog client configuration.
+- `projects/30-games/hub.js` — card shuffle, upcoming-date logic, UTM attribution, analytics controls and event capture.
 - `scripts/build-games.mjs` — dependency-free generator for the log grid and per-game pages.
 - `projects/mobile-apps/index.html` — mobile application work.
 - `projects/short-film/index.html` — short film work.

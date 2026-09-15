@@ -35,16 +35,36 @@ const shortDate = (iso) => {
   const [, month, day] = iso.split('-').map(Number);
   return `${day} ${MONTHS[month - 1].slice(0, 3)}`;
 };
+const addDays = (iso, offset) => {
+  const date = new Date(`${iso}T12:00:00Z`);
+  date.setUTCDate(date.getUTCDate() + offset);
+  return date.toISOString().slice(0, 10);
+};
+const scheduledDate = (game) => game.date || addDays(data.project.startDate, game.day - 1);
 
-// Planned days render as light empty slots so a filled day stands out against them.
+// Cards ship in chronological source order; hub.js shuffles them on every page load.
 function logCard(game) {
+  const date = scheduledDate(game);
   if (game.status !== 'published') {
-    return `<article class="log-card log-card--planned"><span class="log-date">${esc(dayLabel(game.day))}</span></article>`;
+    const scheduledClass = game.status === 'scheduled' ? ' log-card--scheduled' : '';
+    return `<article class="log-card log-card--planned${scheduledClass}" data-shuffle-card><span class="log-date">${esc(dayLabel(game.day))} · ${esc(shortDate(date))}</span><span class="log-status">${game.status === 'scheduled' ? 'Scheduled' : 'Planned'}</span></article>`;
   }
-  return `<a class="log-card" href="./${esc(game.slug)}/">
+  const playUrl = game.links.play || game.links.itch || `./${game.slug}/`;
+  const external = /^https?:\/\//.test(playUrl);
+  const externalAttrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+  return `<article class="log-card log-card--published" data-shuffle-card data-prototype-id="${game.day}">
 <div class="log-cover geo-cover" aria-hidden="true"></div>
-<div class="log-info"><span class="log-date">${esc(dayLabel(game.day))} · ${esc(shortDate(game.date))}</span><h3>${esc(game.title)}</h3></div>
-</a>`;
+<div class="log-info"><span class="log-date">${esc(dayLabel(game.day))} · ${esc(shortDate(date))}</span><h3>${esc(game.title)}</h3><p>${esc(game.pitch)}</p><a class="button button--compact" href="${esc(playUrl)}" data-track="prototype_play_clicked" data-prototype-id="${game.day}" data-prototype-slug="${esc(game.slug)}"${externalAttrs}>Play <span aria-hidden="true">↗</span></a></div>
+</article>`;
+}
+
+function upcomingCard(game) {
+  if (!game) return `<section class="upcoming-card upcoming-card--empty"><div><span class="card-label">Up next</span><h2>Prototype in preparation</h2><p>The next release will appear here when its date is locked.</p></div></section>`;
+  const date = scheduledDate(game);
+  return `<section class="upcoming-card" data-upcoming-card data-release-date="${esc(date)}" aria-labelledby="upcoming-title">
+<div><span class="card-label" data-upcoming-label>Next release</span><h2 id="upcoming-title">Prototype ${String(game.day).padStart(2, '0')}</h2><p>The title and mechanic stay under wraps until release.</p></div>
+<div class="upcoming-date"><span>${esc(MONTHS[Number(date.slice(5, 7)) - 1])}</span><strong>${Number(date.slice(8, 10))}</strong><small>${date.slice(0, 4)}</small></div>
+</section>`;
 }
 
 // itch is skipped here when it already carries the primary Play button.
@@ -89,8 +109,9 @@ function notes(note) {
 }
 
 function gamePage(game, next) {
-  const play = game.links.itch
-    ? `<a class="button" href="${esc(game.links.itch)}" target="_blank" rel="noopener noreferrer">Play on itch.io <span aria-hidden="true">↗</span></a>`
+  const playUrl = game.links.play || game.links.itch;
+  const play = playUrl
+    ? `<a class="button" href="${esc(playUrl)}" target="_blank" rel="noopener noreferrer" data-track="prototype_play_clicked" data-prototype-id="${game.day}" data-prototype-slug="${esc(game.slug)}">Play <span aria-hidden="true">↗</span></a>`
     : '';
   const nextLink = next && next.status === 'published'
     ? `<a class="next-project" href="../${esc(next.slug)}/"><div><span class="meta">${esc(dayLabel(next.day))}</span><br><strong>${esc(next.title)}</strong></div><span aria-hidden="true">→</span></a>`
@@ -105,9 +126,11 @@ function gamePage(game, next) {
 <meta name="description" content="${esc(game.pitch || game.title)}">
 <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
 <link rel="stylesheet" href="../../../styles.css">
+<script src="../analytics-config.js" defer></script>
+<script src="../hub.js" defer></script>
 <meta name="theme-color" content="#ededeb">
 </head>
-<body>
+<body data-prototype-id="${game.day}" data-prototype-slug="${esc(game.slug)}">
 <a class="skip" href="#main">Skip to content</a>
 <header>
 <div class="wrap nav"><a class="wordmark" href="../../../" aria-label="Stas Hrytsko home">SH<span>.</span></a>
@@ -125,7 +148,7 @@ ${game.pitch ? `<p class="lede">${esc(game.pitch)}</p>` : ''}
 </article>
 ${nextLink}
 </main>
-<footer class="wrap"><div class="footer"><span>© 2026 Stas Hrytsko</span><span>Valencia, Spain</span><a href="#main">Back to the top ↑</a></div></footer>
+<footer class="wrap"><div class="analytics-notice"><div><span class="meta">Analytics notice</span><p>This experiment uses product analytics to measure interaction, retry and return behaviour. It does not ask for names or build advertising profiles.</p></div><button class="analytics-toggle" type="button" data-analytics-toggle hidden>Opt out</button></div><div class="footer"><span>© 2026 Stas Hrytsko</span><span>Valencia, Spain</span><a href="#main">Back to the top ↑</a></div></footer>
 </body>
 </html>
 `;
@@ -137,7 +160,7 @@ const games = [...data.games].sort((a, b) => a.day - b.day);
 const publishedCount = games.filter((game) => game.status === 'published').length;
 const stage = publishedCount >= 30 ? 'Completed' : publishedCount > 0 ? 'In progress' : 'Planning';
 const readyText = publishedCount === 0
-  ? 'The experiment framework and 30-slot prototype log are in place. The hub, analytics and first two playable prototypes are the next milestones.'
+  ? 'The hub structure, 30-slot schedule and analytics instrumentation are in place. The first playable build and PostHog project token are the next milestones.'
   : `${publishedCount} of 30 prototypes published. Play the completed entries, vote and follow the evidence behind each result.`;
 
 function updateSummary(html) {
@@ -148,12 +171,19 @@ function updateSummary(html) {
 }
 
 
-const grid = `<div class="log-grid">\n${games.map(logCard).join('\n')}\n</div>`;
+const grid = `<div class="log-grid" data-shuffle-grid>\n${games.map(logCard).join('\n')}\n</div>`;
+const nextScheduled = games.find((game) => game.status === 'scheduled');
+const upcoming = upcomingCard(nextScheduled);
 const indexPath = join(projectDir, 'index.html');
 const index = readFileSync(indexPath, 'utf8');
 const markers = /<!-- log:start -->[\s\S]*?<!-- log:end -->/;
 if (!markers.test(index)) throw new Error('log:start / log:end markers missing in projects/30-games/index.html');
-writeFileSync(indexPath, updateSummary(index.replace(markers, `<!-- log:start -->\n${grid}\n<!-- log:end -->`)));
+const upcomingMarkers = /<!-- upcoming:start -->[\s\S]*?<!-- upcoming:end -->/;
+if (!upcomingMarkers.test(index)) throw new Error('upcoming:start / upcoming:end markers missing in projects/30-games/index.html');
+const generatedIndex = index
+  .replace(upcomingMarkers, `<!-- upcoming:start -->\n${upcoming}\n<!-- upcoming:end -->`)
+  .replace(markers, `<!-- log:start -->\n${grid}\n<!-- log:end -->`);
+writeFileSync(indexPath, updateSummary(generatedIndex));
 const overviewPath = join(root, 'projects', 'index.html');
 writeFileSync(overviewPath, updateSummary(readFileSync(overviewPath, 'utf8')));
 

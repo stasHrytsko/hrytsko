@@ -1,15 +1,33 @@
 {
+  "project": {
+    "startDate": "2026-10-01",
+    "timeZone": "Europe/Madrid"
+  },
   "metricsUpdated": null,
   "games": [
     {
       "day": 1,
-      "slug": null,
-      "date": null,
-      "title": null,
-      "pitch": null,
-      "status": "planned",
+      "slug": "incoming-box",
+      "date": "2026-10-01",
+      "title": "Incoming Box",
+      "sourceTitle": "Ящик приезжает",
+      "pitch": "Receiver boxes change on a schedule—remove the right screws before their color becomes unavailable.",
+      "status": "scheduled",
       "links": {},
       "metrics": {},
+      "concept": {
+        "howItPlays": "Remove the available screws. Two coloured receiver boxes sit below the board, with the next boxes visible in the queue. A box leaves after three moves and its colour becomes unavailable. A screw of the wrong colour goes into a three-slot holding pocket; overflow the pocket and the run ends.",
+        "verb": "Extraction",
+        "pressure": "Forced sequence",
+        "twist": null,
+        "emotion": "Rhythm",
+        "family": "Screw",
+        "difference": "Unlike Screw Jam, finding the colour is not enough—you must catch its availability window.",
+        "levels": "Generated",
+        "solver": "Not required",
+        "trend": true,
+        "killCriterion": "Previewing the receiver-box queue does not change the order in which players remove screws."
+      },
       "notes": {},
       "feedback": {
         "liked": [],
