@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds the 30 Games daily log: the card grid on the project page and one page per published game.
+// Builds the Prototype Validation Project log: the card grid and one page per published prototype.
 // Source of truth: projects/30-games/games.json. Run: node scripts/build-games.mjs
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -12,7 +12,16 @@ const data = JSON.parse(readFileSync(join(projectDir, 'games.json'), 'utf8'));
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const PLATFORMS = { itch: 'itch.io', youtube: 'YouTube', x: 'X', threads: 'Threads' };
-const METRICS = { plays: 'Plays', likes: 'Likes', comments: 'Comments' };
+const count = (value) => value.toLocaleString('en-GB');
+const percent = (value) => `${value.toLocaleString('en-GB')}%`;
+const METRICS = {
+  qualifiedPlayers: { label: 'Qualified players', format: count },
+  clarityRate: { label: 'Understood the mechanic', format: percent },
+  retryRate: { label: 'Retried after failure', format: percent },
+  moreRate: { label: 'Wanted more content', format: percent },
+  returnRate: { label: 'Returned', format: percent },
+  votes: { label: 'Player votes', format: count }
+};
 
 const esc = (value) => String(value)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -49,7 +58,7 @@ function platformLinks(links, skip = []) {
 function statCards(metrics, updated) {
   const cards = Object.entries(METRICS)
     .filter(([key]) => Number.isFinite(metrics[key]))
-    .map(([key, label]) => `<div class="stat-card reveal"><strong>${metrics[key].toLocaleString('en-GB')}</strong><span>${label}</span></div>`);
+    .map(([key, metric]) => `<div class="stat-card reveal"><strong>${metric.format(metrics[key])}</strong><span>${metric.label}</span></div>`);
   if (!cards.length) return '';
   const note = updated ? `\n<p class="small">Figures recorded by hand on ${esc(longDate(updated))}.</p>` : '';
   return `\n<section class="detail-block">
@@ -85,14 +94,14 @@ function gamePage(game, next) {
     : '';
   const nextLink = next && next.status === 'published'
     ? `<a class="next-project" href="../${esc(next.slug)}/"><div><span class="meta">${esc(dayLabel(next.day))}</span><br><strong>${esc(next.title)}</strong></div><span aria-hidden="true">→</span></a>`
-    : `<a class="next-project" href="../"><div><span class="meta">Back to the log</span><br><strong>30 Games in 30 Days</strong></div><span aria-hidden="true">→</span></a>`;
+    : `<a class="next-project" href="../"><div><span class="meta">Back to the log</span><br><strong>Prototype Validation Project</strong></div><span aria-hidden="true">→</span></a>`;
 
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(game.title)} — 30 Games in 30 Days</title>
+<title>${esc(game.title)} — Prototype Validation Project</title>
 <meta name="description" content="${esc(game.pitch || game.title)}">
 <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
 <link rel="stylesheet" href="../../../styles.css">
@@ -106,7 +115,7 @@ function gamePage(game, next) {
 </div>
 </header>
 <main class="wrap" id="main">
-<section class="page-hero"><a class="back" href="../">← 30 Games in 30 Days</a>
+<section class="page-hero"><a class="back" href="../">← Prototype Validation Project</a>
 <div class="meta">${esc(dayLabel(game.day))} / ${esc(longDate(game.date))}</div>
 <h1>${esc(game.title)}</h1>
 ${game.pitch ? `<p class="lede">${esc(game.pitch)}</p>` : ''}
@@ -128,8 +137,8 @@ const games = [...data.games].sort((a, b) => a.day - b.day);
 const publishedCount = games.filter((game) => game.status === 'published').length;
 const stage = publishedCount >= 30 ? 'Completed' : publishedCount > 0 ? 'In progress' : 'Planning';
 const readyText = publishedCount === 0
-  ? 'The 30-day log is set up. No games have been published here yet; the first playable game is the next milestone.'
-  : `${publishedCount} of 30 games published. Open the completed entries in the daily log to explore the games and development notes.`;
+  ? 'The experiment framework and 30-slot prototype log are in place. The hub, analytics and first two playable prototypes are the next milestones.'
+  : `${publishedCount} of 30 prototypes published. Play the completed entries, vote and follow the evidence behind each result.`;
 
 function updateSummary(html) {
   return html

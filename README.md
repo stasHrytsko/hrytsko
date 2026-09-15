@@ -12,17 +12,17 @@ python3 -m http.server 8000
 
 Open http://localhost:8000. Any static HTTP server will work.
 
-## The 30 Games log
+## The Prototype Validation Project log
 
-`projects/30-games/games.json` is the single source of truth for the daily log. After editing it, regenerate the cards and per-game pages:
+`projects/30-games/games.json` is the single source of truth for the prototype log. After editing it, regenerate the cards and per-prototype pages:
 
 ```sh
 node scripts/build-games.mjs
 ```
 
-The script has no dependencies. It rewrites the card grid between the `log:start` / `log:end` markers in `projects/30-games/index.html` and writes one static page per game with `"status": "published"`. Entries still marked `"planned"` render as a “Coming soon” card with no link and no page.
+The script has no dependencies. It rewrites the card grid between the `log:start` / `log:end` markers in `projects/30-games/index.html` and writes one static page per prototype with `"status": "published"`. Entries still marked `"planned"` render as an empty planned slot with no link and no page.
 
-Metrics (plays, likes, comments) are recorded by hand and stamped with the `metricsUpdated` date. They are deliberately not fetched live: itch.io exposes no public play counts, and X and Threads need paid or per-account API access, so a live counter would break quietly and silently show zero.
+The experiment metrics are qualified players, clarity rate, retry rate, desire for more content, return rate and player votes. They are stored per prototype and stamped with the `metricsUpdated` date. The public pages only render metrics that have a numeric value.
 
 Player reactions live on the platforms where they were posted. Rather than embedding comments, each day carries a hand-written summary under `feedback`: `liked` and `didntWork`, each a short list. Both render as two cards; the `liked` list uses accent markers.
 
@@ -31,7 +31,7 @@ Player reactions live on the platforms where they were posted. Rather than embed
 - `index.html` — name, role and one floating white-and-black card linking to Career and Projects.
 - `projects/index.html` — standalone project collection, with one linked card per existing project preview.
 - `experience/index.html` — Career: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
-- `projects/30-games/index.html` — 30 Games in 30 Days concept, with the generated daily log grid.
+- `projects/30-games/index.html` — Prototype Validation Project overview, with the generated prototype log grid.
 - `projects/30-games/games.json` — source of truth for the log: days, links, hand-recorded metrics and a hand-written feedback summary.
 - `scripts/build-games.mjs` — dependency-free generator for the log grid and per-game pages.
 - `projects/mobile-apps/index.html` — mobile application work.
@@ -74,4 +74,4 @@ The Career page now leads with a concrete delivery focus, two evidence-backed ex
 
 Navigation uses Career / Projects; the existing `/experience/` URL and homepage anchors are preserved. The Projects page has All, Games, Apps, Films and Tabletop filters. Tabletop belongs to Games as well as Tabletop. All cards remain available when JavaScript is disabled.
 
-30 Games in 30 Days is featured for September 2026. The 30-day clock starts with the first game. The generator updates stage, published count and ready summary in both the collection and project page from `games.json`: zero releases = Planning, 1–29 = In progress, 30 = Completed. Run `node scripts/build-games.mjs` after updating the log. Other project pages now use What I’m making / The goal / What’s ready / What’s next.
+Prototype Validation Project is the featured personal experiment for 2026. The generator updates stage, published count and ready summary in both the collection and project page from `games.json`: zero releases = Planning, 1–29 = In progress, 30 = Completed. Run `node scripts/build-games.mjs` after updating the log. Other project pages now use What I’m making / The goal / What’s ready / What’s next.
