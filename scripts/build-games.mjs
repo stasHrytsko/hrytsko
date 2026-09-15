@@ -92,7 +92,6 @@ function gamePage(game, next) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
 <title>${esc(game.title)} — 30 Games in 30 Days</title>
 <meta name="description" content="${esc(game.pitch || game.title)}">
 <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
@@ -102,7 +101,7 @@ function gamePage(game, next) {
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header>
-<div class="wrap nav"><a class="wordmark" href="../../../" aria-label="Stas Hrytsko home">Hrytsko<span>.</span></a>
+<div class="wrap nav"><a class="wordmark" href="../../../" aria-label="Stas Hrytsko home">SH<span>.</span></a>
 <nav aria-label="Main navigation"><a href="../../../experience/">Career</a><a href="../../" class="active" aria-current="location">Projects</a></nav>
 </div>
 </header>
