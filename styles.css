@@ -154,7 +154,7 @@ nav{gap:12px;font-size:13px}
 .jobs{display:flex;flex-direction:column;gap:14px}
 .job{background:#fff;border:0;padding:0;overflow:hidden;box-shadow:0 1px 2px rgba(33,33,33,.05),0 8px 16px -10px rgba(33,33,33,.18);transition:box-shadow .25s ease,transform .25s ease}
 .job[open]{box-shadow:0 1px 2px rgba(33,33,33,.06),0 14px 28px -14px rgba(33,33,33,.3)}
-.job--current{background:var(--ink);color:#fff}
+.job--current{background:#fff;color:var(--ink);border:1px solid var(--ink);box-shadow:none}
 .job-summary{display:grid;grid-template-columns:210px minmax(0,1fr) 40px;gap:0 30px;align-items:start;padding:clamp(22px,2.6vw,30px);list-style:none;cursor:default}
 details.job>.job-summary{cursor:pointer}
 .job-summary::-webkit-details-marker,.job-summary::marker{display:none;content:""}
@@ -162,18 +162,18 @@ details.job>.job-summary{cursor:pointer}
 .job-aside{display:flex;flex-direction:column;gap:9px;padding-top:5px}
 .job-dates,.job-place{font:11px/1.55 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 .job-dates{color:var(--ink)}
-.job--current .job-dates{color:#fff}
-.job--current .job-place,.job--current .job-role{color:#a7a7a4}
+.job--current .job-dates{color:var(--ink)}
+.job--current .job-place,.job--current .job-role{color:var(--muted)}
 .job-company{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-size:clamp(23px,2.1vw,28px);font-weight:700;line-height:1.15;letter-spacing:-.035em}
 .job-now{font:10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:6px 9px}
 .job-role{display:block;margin-top:9px;font-size:15px;line-height:1.5;color:var(--muted)}
 .job-domains{display:flex;flex-wrap:wrap;align-items:center;gap:7px 0;margin-top:18px;font:11px/1.4 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 .job-domains span:not(:last-child)::after{content:"|";margin:0 10px;color:var(--line)}
-.job--current .job-domains{color:#a7a7a4}
-.job--current .job-domains span:not(:last-child)::after{color:#55565a}
+.job--current .job-domains{color:var(--muted)}
+.job--current .job-domains span:not(:last-child)::after{color:var(--line)}
 .job-toggle{justify-self:end;width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);font-size:19px;line-height:1;color:var(--accent);transition:background .2s,border-color .2s}
 .job-toggle-icon{display:inline-block;transition:transform .25s ease}
-.job--current .job-toggle{border-color:#44454a}
+.job--current .job-toggle{border-color:var(--line)}
 details.job[open] .job-toggle-icon{transform:rotate(45deg)}
 .job--flat{background:transparent;box-shadow:none;border-radius:0;border-top:1px solid var(--line)}
 .job--flat .job-summary{padding:22px clamp(22px,2.6vw,30px);grid-template-columns:210px minmax(0,1fr)}
@@ -185,18 +185,18 @@ details.job[open] .job-toggle-icon{transform:rotate(45deg)}
 .job-meta>div+div{margin-top:18px}
 .job-meta dt{font:11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .job-meta dd{margin:6px 0 0;font-size:15px}
-.job--current .job-meta dt{color:#8d8e8b}
+.job--current .job-meta dt{color:var(--muted)}
 .job-blocks{grid-column:2}
 .job-block{padding-top:22px;border-top:1px solid var(--line)}
 .job-block+.job-block{margin-top:26px}
-.job--current .job-block{border-color:#3a3b3f}
+.job--current .job-block{border-color:var(--line)}
 .job-block h4{margin:0 0 12px;font:11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}
 .job-block p{margin:0 0 12px;max-width:640px}
 .job-block p:last-child{margin-bottom:0}
-.job--current .job-block .small{color:#a7a7a4}
+.job--current .job-block .small{color:var(--muted)}
 .job .role-history{margin:0}
 .job .role-history li::before{top:7px}
-.job--current .role-history{border-color:#44454a}
+.job--current .role-history{border-color:#b9b9b2}
 @media(hover:hover){details.job:hover{transform:translateY(-2px);box-shadow:0 1px 2px rgba(33,33,33,.06),0 16px 30px -14px rgba(33,33,33,.3)}
 details.job:hover .job-toggle{background:var(--accent);border-color:var(--accent);color:#fff}
 }
