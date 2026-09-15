@@ -417,3 +417,21 @@ details.job[open]::details-content{block-size:auto;content-visibility:visible}
 .project-placeholder{grid-column:1/-1;min-height:250px!important;aspect-ratio:auto;background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
 .project-placeholder .tile-top,.project-placeholder p{color:var(--muted)}
 @media(hover:hover){.project-placeholder:hover{background:transparent;color:var(--ink);transform:none;box-shadow:none}.project-placeholder:hover .tile-top,.project-placeholder:hover p{color:var(--muted)}}
+
+/* Dev.Pro: company disclosure with a second level for individual positions. */
+.role-accordions{border-bottom:1px solid var(--line)}
+.role-item{padding:0;border-top:1px solid var(--line)}
+.role-item:last-child{border-bottom:0}
+.role-item>summary{display:grid;grid-template-columns:minmax(0,1fr) 30px;align-items:center;gap:18px;padding:18px 0;font-size:16px}
+.role-item>summary::after{content:none}
+.role-item-title{display:flex;align-items:baseline;justify-content:space-between;gap:18px}
+.role-item-title strong{font-size:17px;letter-spacing:-.02em}
+.role-item-title .small{flex-shrink:0;font:11px/1.5 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.role-item-toggle{width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--line);color:var(--accent);transition:transform .2s ease,background .2s ease}
+.role-item[open] .role-item-toggle{transform:rotate(45deg)}
+.role-item-body{padding:0 48px 22px 0}
+.role-item-body p{padding-top:0;margin:0;color:var(--muted)}
+.role-item-body .role-context{font:11px/1.6 var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.role-item-body ul{margin:16px 0 0;padding-left:20px}
+.role-item-body li{margin-top:10px;line-height:1.6}
+@media(max-width:600px){.role-item-title{align-items:flex-start;flex-direction:column;gap:4px}.role-item-body{padding-right:0}}
