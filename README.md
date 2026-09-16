@@ -12,36 +12,18 @@ python3 -m http.server 8000
 
 Open http://localhost:8000. Any static HTTP server will work.
 
-## The Prototype Validation Project log
+## The Prototype Validation Project
 
-`projects/30-games/games.json` is the single source of truth for the prototype log. After editing it, regenerate the cards and per-prototype pages:
+`projects/30-games/index.html` is a static case-study page for the experiment — what it is, how it works, how the winner gets picked. It is hand-maintained, not generated.
 
-```sh
-node scripts/build-games.mjs
-```
-
-The script has no dependencies. It rewrites the upcoming card and prototype grid in `projects/30-games/index.html`, then writes one static page per prototype with `"status": "published"`. A `"scheduled"` entry powers the hidden upcoming card; `"planned"` entries remain empty slots. The launch schedule begins on 1 October 2026 and runs for 30 consecutive days.
-
-`projects/30-games/hub.js` shuffles the prototype cards on each visit, labels a release as “Tomorrow” when appropriate, persists first/latest UTM attribution in local storage and attaches that attribution to every custom event. Attribution remains granular; it is not reduced to warm/cold segments.
-
-PostHog is intentionally inactive until `projectToken` and `apiHost` are filled in `projects/30-games/analytics-config.js`. Use the Project API token from PostHog project settings, never a personal API key. Autocapture and session recording are disabled; the hub emits explicit project events only.
-
-To release a prototype, add its playable URL under `links.play`, change its status from `scheduled` to `published`, mark the next concept as `scheduled`, and run the generator. Scheduled titles and mechanics remain hidden on the public hub until that status change.
-
-The experiment metrics are qualified players, clarity rate, retry rate, desire for more content, return rate and player votes. They are stored per prototype and stamped with the `metricsUpdated` date. The public pages only render metrics that have a numeric value.
-
-Player reactions live on the platforms where they were posted. Rather than embedding comments, each day carries a hand-written summary under `feedback`: `liked` and `didntWork`, each a short list. Both render as two cards; the `liked` list uses accent markers.
+The playable hub itself — the 30-slot schedule, prototype log, card shuffle, UTM attribution and PostHog analytics — lives in a separate repository, `stasHrytsko/play`, deployed at play.hrytsko.com. That split keeps this portfolio stable while the hub gets pushed to daily during the experiment. See that repo's README for `games.json`, the generator and the release process.
 
 ## Structure
 
 - `index.html` — name, role and one floating white-and-black card linking to Career and Projects.
-- `projects/index.html` — standalone project collection, with one linked card per existing project preview.
+- `projects/index.html` — standalone project collection, with one linked card per existing project preview. The Prototype Validation Project tile links out to play.hrytsko.com.
 - `experience/index.html` — Career: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
-- `projects/30-games/index.html` — Prototype Validation Project overview, with the generated prototype log grid.
-- `projects/30-games/games.json` — source of truth for the launch schedule, concepts, links, metrics and feedback summaries.
-- `projects/30-games/analytics-config.js` — launch date, timezone and PostHog client configuration.
-- `projects/30-games/hub.js` — card shuffle, upcoming-date logic, UTM attribution, analytics controls and event capture.
-- `scripts/build-games.mjs` — dependency-free generator for the log grid and per-game pages.
+- `projects/30-games/index.html` — Prototype Validation Project case study; links out to the live hub at play.hrytsko.com.
 - `projects/mobile-apps/index.html` — mobile application work.
 - `projects/short-film/index.html` — short film work.
 - `projects/board-game/index.html` — tabletop game work.
@@ -82,4 +64,4 @@ The Career page now leads with a concrete delivery focus, two evidence-backed ex
 
 Navigation uses Career / Projects; the existing `/experience/` URL and homepage anchors are preserved. The Projects page has All, Games, Apps, Films and Tabletop filters. Tabletop belongs to Games as well as Tabletop. All cards remain available when JavaScript is disabled.
 
-Prototype Validation Project is the featured personal experiment for 2026. The generator updates stage, published count and ready summary in both the collection and project page from `games.json`: zero releases = Planning, 1–29 = In progress, 30 = Completed. Run `node scripts/build-games.mjs` after updating the log. Other project pages now use What I’m making / The goal / What’s ready / What’s next.
+Prototype Validation Project is the featured personal experiment for 2026. Its stage and published count on this site are hand-maintained (zero releases = Planning, 1–29 = In progress, 30 = Completed); the live count is generated automatically on the play.hrytsko.com side from `games.json`. Other project pages now use What I’m making / The goal / What’s ready / What’s next.
