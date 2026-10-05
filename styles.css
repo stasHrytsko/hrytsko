@@ -8,6 +8,8 @@ a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-of
 .wrap{width:100%;max-width:1400px;padding:0 56px;margin:auto}
 .preview{background:#deded9;text-align:center;padding:6px 20px;font:12px/1.5 var(--mono);color:#4c4c49}
 .preview span{color:var(--ink)}
+.preview--construction{background:var(--ink);color:#e3e3e0}
+.preview--construction span{color:#fff;font-weight:700;letter-spacing:.09em}
 header{position:sticky;top:0;z-index:10;background:var(--paper);border-bottom:1px solid var(--line)}
 .nav{min-height:90px;display:flex;align-items:center;justify-content:space-between;gap:25px}
 .wordmark{font-size:30px;font-weight:800;letter-spacing:-1.8px}
