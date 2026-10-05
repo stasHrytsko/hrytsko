@@ -7,7 +7,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const projectDir = join(root, 'projects', '30-games');
+const projectDir = join(root, 'site', 'projects', '30-games');
 const data = JSON.parse(readFileSync(join(projectDir, 'games.json'), 'utf8'));
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

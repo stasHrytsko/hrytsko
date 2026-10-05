@@ -2,6 +2,29 @@
 
 Text-only personal website for Stas Hrytsko, a programme and delivery leader based in Valencia. A short introduction leads to two destinations: Work and Projects.
 
+## Current state: holding page
+
+The site is closed to visitors. The repository root serves a single self-contained
+holding page (`index.html`, with `404.html` as its twin); the real site has been
+moved intact into `site/` and is listed in `.vercelignore`, so it is not uploaded
+on deploy. Every former URL — `/experience/`, `/projects/`, `/styles.css` — now
+returns 404.
+
+Nothing was deleted. To bring the site back:
+
+```sh
+git mv site/404.html site/index.html site/styles.css site/experience site/projects .
+git rm site/favicon.svg
+```
+
+then remove `site/` from `.vercelignore` and restore the holding page from history
+if it is wanted again. Paths inside `site/` are unchanged and relative, so the pages
+work as soon as they are back at the root.
+
+The holding page carries no navigation, no links and no contact details, and keeps
+`noindex,nofollow`. It inherits the palette and type stack of the main site but has
+its own inline styles, so it does not depend on `site/styles.css`.
+
 ## Run locally
 
 The site itself needs no installation or build step. From the repository root:
@@ -14,13 +37,13 @@ Open http://localhost:8000. Any static HTTP server will work.
 
 ## The 30 Games log
 
-`projects/30-games/games.json` is the single source of truth for the daily log. After editing it, regenerate the cards and per-game pages:
+`site/projects/30-games/games.json` is the single source of truth for the daily log. After editing it, regenerate the cards and per-game pages:
 
 ```sh
 node scripts/build-games.mjs
 ```
 
-The script has no dependencies. It rewrites the card grid between the `log:start` / `log:end` markers in `projects/30-games/index.html` and writes one static page per game with `"status": "published"`. Entries still marked `"planned"` render as a “Coming soon” card with no link and no page.
+The script has no dependencies. It rewrites the card grid between the `log:start` / `log:end` markers in `site/projects/30-games/index.html` and writes one static page per game with `"status": "published"`. Entries still marked `"planned"` render as a “Coming soon” card with no link and no page.
 
 Metrics (plays, likes, comments) are recorded by hand and stamped with the `metricsUpdated` date. They are deliberately not fetched live: itch.io exposes no public play counts, and X and Threads need paid or per-account API access, so a live counter would break quietly and silently show zero.
 
@@ -28,18 +51,29 @@ Player reactions live on the platforms where they were posted. Rather than embed
 
 ## Structure
 
-- `index.html` — name, role and one floating white-and-black card linking to Work and Projects.
-- `projects/index.html` — standalone project collection, with one linked card per existing project preview.
-- `experience/index.html` — Work: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
-- `projects/30-games/index.html` — 30 Games in 30 Days concept, with the generated daily log grid.
-- `projects/30-games/games.json` — source of truth for the log: days, links, hand-recorded metrics and a hand-written feedback summary.
-- `scripts/build-games.mjs` — dependency-free generator for the log grid and per-game pages.
-- `projects/mobile-apps/index.html` — mobile application work.
-- `projects/short-film/index.html` — short film work.
-- `projects/board-game/index.html` — tabletop game work.
-- `styles.css` — shared responsive layout and typography.
+Served to visitors:
+
+- `index.html` — the holding page; self-contained, inline styles, no links.
+- `404.html` — the same page worded for a missing address.
 - `favicon.svg` — original repository favicon, preserved.
-- `404.html` — fallback page for hosts that support it.
+
+Parked in `site/`, excluded from deploy:
+
+- `site/index.html` — name, role and one floating white-and-black card linking to Work and Projects.
+- `site/projects/index.html` — standalone project collection, with one linked card per existing project preview.
+- `site/experience/index.html` — Work: career as expandable company cards in two chapters (Delivery, Procurement &amp; commercial), plus delivery scope, credentials, education, recommendations and volunteering.
+- `site/projects/30-games/index.html` — 30 Games in 30 Days concept, with the generated daily log grid.
+- `site/projects/30-games/games.json` — source of truth for the log: days, links, hand-recorded metrics and a hand-written feedback summary.
+- `site/projects/mobile-apps/index.html` — mobile application work.
+- `site/projects/short-film/index.html` — short film work.
+- `site/projects/board-game/index.html` — tabletop game work.
+- `site/styles.css` — shared responsive layout and typography.
+- `site/404.html` — the site's own fallback page.
+- `site/favicon.svg` — copy of the favicon, so the parked site is self-contained.
+
+Not served:
+
+- `scripts/build-games.mjs` — dependency-free generator for the log grid and per-game pages; writes into `site/`.
 
 ## Content and design
 
