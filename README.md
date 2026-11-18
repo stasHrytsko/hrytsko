@@ -1,6 +1,6 @@
 # HRYTSKO
 
-Personal website for Stas Hrytsko, a Technical Program & Delivery Manager based in Valencia. The site is a single career page: introduction, scope, what I do, career history and education.
+Personal website for Stas Hrytsko, a Technical Program & Delivery Manager based in Valencia. The site is a single landing page in a portfolio format: hero with portrait and CV download, scope figures, companies, selected delivery cases, expertise, about, experience, certifications and contact.
 
 Last content review: November 2026.
 
@@ -16,11 +16,12 @@ Open http://localhost:8000. Any static HTTP server will work. Note that `python3
 
 ## Structure
 
-- `index.html` — the career page: portrait and introduction, delivery scope, What I do, career as expandable company cards in two chapters (Delivery, Procurement & commercial) and education.
+- `index.html` — the whole site, in this order: header with section links and a CV button; hero; four scope figures; "Where I've delivered" company names; 01 Selected work (one featured case plus six case cards); 02 What I do (four areas plus methods and tools); 03 About; 04 Experience (expandable company cards in two chapters, Delivery and Procurement & commercial); 05 Certifications & education; Contact.
 - `experience/index.html` — redirect to the home page, kept so the old `/experience/` URL still resolves.
 - `404.html` — fallback page for hosts that support it.
 - `styles.css` — shared responsive layout and typography.
 - `portrait.webp` — black-and-white portrait with an orange band, 960 × 1200.
+- `Stas_Hrytsko_CV.pdf` — the downloadable CV (two pages, October 2026 version from Google Drive). Replace this file to update the download; the links don't change.
 - `favicon.svg` — site favicon.
 
 There is no JavaScript. Companies and Dev.Pro positions expand with native HTML `details` controls, so they are keyboard and screen reader accessible.
@@ -35,11 +36,16 @@ The portrait is the approved image re-encoded from the original 1122 × 1402 PNG
 
 ## Career content notes
 
+- Source of truth for figures is the "Master CV" Google Doc in the Resume folder on Drive, including its evidence appendix. Where CV versions disagree (account growth, revenue, contributor count, Greece status), the site follows Master CV. Older CVs from 2025 (Wrocław) contain claims that are not used here.
+- The headline "7+ years" counts software delivery since June 2019. Master CV says 8+.
+- Public contacts are email and LinkedIn only. No phone number and no "open to opportunities" badge, by the owner's choice.
+- Company names in "Where I've delivered" are plain text, not logo images.
+- The CV PDF links to linkedin.com/in/stashrytsko while the site uses linkedin.com/in/stas-hrytsko; one of them needs checking.
 - Titles and dates follow the LinkedIn profile, including the overlapping Buyer / Senior Buyer dates at Bayer.
 - The current employer, BrainRocket, is named. Scope is labelled explicitly: approximately 150 programme contributors and a team of one Program Manager plus four Project Managers.
 - Account growth from 8 to 50 people is attributed to the Securrency / DTCC Digital Assets account at Dev.Pro.
 - The Bayer letter of recommendation is referenced through the LinkedIn profile; no document URL is invented.
-- There is no credentials or recommendations section, no CV download and no contact form. These are deferred by the owner.
+- There are no recommendations, no contact form and no blog.
 
 ## Projects
 
